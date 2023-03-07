@@ -1,32 +1,88 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
+import Card from './Card.jsx'
 import './App.css'
+import dwayne from '/dwayne.jpg'
+import kevin from '/kevin.jpg'
+import rihanna from '/rihana.jpg'
+import jennifer from '/jennifer.jpg'
+import dwayneName from '/dwayne.png'
+import kevinName from '/kevin.png'
+import rihannaName from '/Rihanna.png'
+import jenniferName from '/jennifer.png'
+
+
+
+
+
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [currentIndex, setCurrentIndex] = useState(1);
+  const [currentView, setCurrentView] = useState("img");
+  const [isFlipped, setIsFlipped] = useState(false);
+  
+
+  const celebrities = {1:{"Name": dwayneName, "img": dwayne},
+                        2:{"Name": rihannaName, "img": rihanna},
+                        3:{"Name": kevinName, "img": kevin},
+                        4:{"Name": jenniferName, "img": jennifer}}
+
+  const [image, setImage] = useState(celebrities[1].img);
+
+  const handleBackward = () => {
+    if (isFlipped) {
+      handleCardClick()
+    }
+
+    if (currentIndex > 1) {
+      setCurrentIndex(currentIndex - 1);
+      setImage(celebrities[currentIndex].img)
+    }
+  };
+
+  const handleForward = () => {
+    if (isFlipped) {
+      handleCardClick()
+    }
+    if (currentIndex != 4) {
+      setCurrentIndex(currentIndex + 1);
+    }
+  };
+
+  const handleCardClick = () => {
+    setIsFlipped(!isFlipped);
+
+  };
 
   return (
     <div className="App">
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src="/vite.svg" className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://reactjs.org" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+      <div className='a'>
+        <div className='b'>
+          <h1 >Guess the celebrity Challenge</h1>
+          <h3>How familiar are you with celebrities? Challenge yourself.<br/>
+          </h3>
+          <h4>
+            Number of cards: 4
+
+          </h4>
+        </div>
+        
+        <div className='CardDiv'>
+          <div onClick={handleCardClick}>
+            <Card img={isFlipped ? celebrities[currentIndex].Name : celebrities[currentIndex].img}/>
+
+          </div>
+          
+          <div className='buttonDiv'>
+              <button onClick={handleBackward}>
+                  <span>&larr;</span> 
+              </button>
+              <button onClick={handleForward}>
+                  <span>&rarr;</span>
+              </button>
+          </div>
+        </div>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      
     </div>
   )
 }
