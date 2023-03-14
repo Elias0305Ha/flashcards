@@ -21,6 +21,7 @@
   
 }
 
+
 .buttonDiv {
   margin: auto;
   width: fit-content;
@@ -28,7 +29,7 @@
 }
 
 .buttonDiv button {
-  background-color: white;
+  background-color: rgb(244, 222, 222);
   margin: 5px;
 }
 
@@ -59,3 +60,52 @@ b{
   margin-left: 200px;
   margin-bottom: 80px;
 }
+
+
+
+
+input {
+  border: 2px solid #ccc;
+  height: 35px;
+  border-radius: 12px;
+  margin-top: 20px;
+  margin-right: 10px;
+  margin-left: 5px;
+}
+
+input.invalid {
+  border-color: red;
+  border-width: 7px;
+}
+
+input.valid {
+  border-color: green;
+  border-width: 10px;
+}
+.guessInput {
+  align-items: center;
+  margin: auto;
+  
+}
+
+.guessInput button{
+  color: white;
+  background-color: rgb(223, 157, 157);
+  border-color: azure;
+}
+
+.guessInput label {
+  color: white;
+  font-size: large;
+}
+
+button {
+  transition: background-color 0.3s ease-in-out;
+}
+
+button:focus,
+button:active {
+  background-color: #d6a8ab;
+  transition: background-color 0.3s ease-in-out;
+}
+
